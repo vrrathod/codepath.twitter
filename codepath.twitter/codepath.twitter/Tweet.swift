@@ -38,11 +38,15 @@ class Tweet {
     }
     
     func userHandle() -> String {
-        return stringForAttribute("screen_name", inUserData: true);
+        return stringForAttribute("screen_name", inUserData: true)
     }
     
     func tweetText() -> String {
-        return stringForAttribute("text", inUserData: false);
+        return stringForAttribute("text", inUserData: false)
+    }
+    
+    func userProfilePicUrlString() -> String {
+        return stringForAttribute("profile_image_url", inUserData: true)
     }
     
 }

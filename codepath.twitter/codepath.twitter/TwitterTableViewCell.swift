@@ -14,6 +14,7 @@ class TwitterTableViewCell: UITableViewCell {
     @IBOutlet weak var userName: UILabel!
     @IBOutlet weak var userHandle: UILabel!
     @IBOutlet weak var tweet: UILabel!
+    @IBOutlet weak var userProfileImage: UIImageView!
     
     var tweetInfo:Tweet = Tweet()
 
@@ -38,6 +39,7 @@ class TwitterTableViewCell: UITableViewCell {
         userName.text = tweetInfo.userName()
         userHandle.text = "@\(tweetInfo.userHandle())"
         tweet.text = tweetInfo.tweetText()
+        
     }
     
     

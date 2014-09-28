@@ -99,6 +99,7 @@
                                             <outlet property="tweet" destination="1dT-Ss-fBe" id="FBD-7O-U4G"/>
                                             <outlet property="userHandle" destination="IBQ-T5-fAB" id="BPf-xU-flH"/>
                                             <outlet property="userName" destination="hK5-7w-Ft3" id="Wzk-6L-2ge"/>
+                                            <outlet property="userProfileImage" destination="EaT-iF-Nsb" id="r7c-VC-gLW"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>

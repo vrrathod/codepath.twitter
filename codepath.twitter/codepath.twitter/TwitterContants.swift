@@ -14,5 +14,12 @@ class TwitterConstant {
         return "TwitterCell";
     }
     
+    class func home_timeLine() -> String {
+        return "https://api.twitter.com/1.1/statuses/home_timeline.json";
+    }
+    
+    class func user_timeLine() -> String {
+        return "https://api.twitter.com/1.1/statuses/user_timeline.json";
+    }
     
 }

@@ -13,6 +13,10 @@
 		379FEDC319D7C12D0034CD57 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 379FEDC219D7C12D0034CD57 /* Images.xcassets */; };
 		379FEDC619D7C12D0034CD57 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 379FEDC419D7C12D0034CD57 /* LaunchScreen.xib */; };
 		379FEDD219D7C12D0034CD57 /* codepath_twitterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 379FEDD119D7C12D0034CD57 /* codepath_twitterTests.swift */; };
+		379FEDDC19D7CB150034CD57 /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 379FEDDB19D7CB150034CD57 /* Accounts.framework */; };
+		379FEDDE19D7CB190034CD57 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 379FEDDD19D7CB190034CD57 /* Security.framework */; };
+		379FEDE019D7CCBD0034CD57 /* Twitter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 379FEDDF19D7CCBD0034CD57 /* Twitter.swift */; };
+		379FEDE219D888850034CD57 /* TwitterContants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 379FEDE119D888850034CD57 /* TwitterContants.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,6 +40,10 @@
 		379FEDCB19D7C12D0034CD57 /* codepath.twitterTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = codepath.twitterTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		379FEDD019D7C12D0034CD57 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		379FEDD119D7C12D0034CD57 /* codepath_twitterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = codepath_twitterTests.swift; sourceTree = "<group>"; };
+		379FEDDB19D7CB150034CD57 /* Accounts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accounts.framework; path = System/Library/Frameworks/Accounts.framework; sourceTree = SDKROOT; };
+		379FEDDD19D7CB190034CD57 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		379FEDDF19D7CCBD0034CD57 /* Twitter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Twitter.swift; sourceTree = "<group>"; };
+		379FEDE119D888850034CD57 /* TwitterContants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TwitterContants.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -43,6 +51,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				379FEDDE19D7CB190034CD57 /* Security.framework in Frameworks */,
+				379FEDDC19D7CB150034CD57 /* Accounts.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -59,6 +69,8 @@
 		379FEDAD19D7C12D0034CD57 = {
 			isa = PBXGroup;
 			children = (
+				379FEDDD19D7CB190034CD57 /* Security.framework */,
+				379FEDDB19D7CB150034CD57 /* Accounts.framework */,
 				379FEDB819D7C12D0034CD57 /* codepath.twitter */,
 				379FEDCE19D7C12D0034CD57 /* codepath.twitterTests */,
 				379FEDB719D7C12D0034CD57 /* Products */,
@@ -83,6 +95,8 @@
 				379FEDC219D7C12D0034CD57 /* Images.xcassets */,
 				379FEDC419D7C12D0034CD57 /* LaunchScreen.xib */,
 				379FEDB919D7C12D0034CD57 /* Supporting Files */,
+				379FEDDF19D7CCBD0034CD57 /* Twitter.swift */,
+				379FEDE119D888850034CD57 /* TwitterContants.swift */,
 			);
 			path = codepath.twitter;
 			sourceTree = "<group>";
@@ -213,6 +227,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				379FEDBE19D7C12D0034CD57 /* ViewController.swift in Sources */,
+				379FEDE219D888850034CD57 /* TwitterContants.swift in Sources */,
+				379FEDE019D7CCBD0034CD57 /* Twitter.swift in Sources */,
 				379FEDBC19D7C12D0034CD57 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

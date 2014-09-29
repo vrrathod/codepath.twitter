@@ -12,25 +12,43 @@ class ViewController: UIViewController, UITableViewDataSource {
 
     @IBOutlet weak var tweetStreamTableView: UITableView!
     
+    // Twitter client object
+    var twitterClient = TwitterClient();
+    
     // Table data
     var tableData = NSArray()
+    
+    // Pull handler
+    var pullHandler:UIRefreshControl = UIRefreshControl();
+    
+    // MARK: - Overrides and Blocks
+    
+    // Block to handle completion of the tweets query
+    func tweetStreamCompletionBlock( success:Bool, dataArray:NSArray!, error:NSError!) -> Void {
+        if success {
+            NSLog("\(dataArray)")
+            self.tableData = dataArray // TODO: append data?
+            self.tweetStreamTableView.reloadData()
+            
+        } else {
+            NSLog("Error! \(error?.localizedDescription)")
+        }
+        
+        self.pullHandler.endRefreshing();
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         tweetStreamTableView.rowHeight = UITableViewAutomaticDimension;
         
         // Do any additional setup after loading the view, typically from a nib.
-        var t = TwitterClient();
-        t.getHomeTimeLine { (success, dataArray, error) -> Void in
-            if success {
-                NSLog("\(dataArray)")
-                self.tableData = dataArray
-                self.tweetStreamTableView.reloadData()
-                
-            } else {
-                NSLog("Error! \(error?.localizedDescription)")
-            }
-        }
+        twitterClient.getHomeTimeLine(tweetStreamCompletionBlock);
+        
+        // setup pull handler
+        pullHandler.attributedTitle = NSAttributedString(string: "Pull Me!")
+        pullHandler.tintColor = UIColor.redColor()
+        pullHandler.addTarget(self, action: "updateTweetStream:", forControlEvents: UIControlEvents.ValueChanged)
+        tweetStreamTableView.addSubview(pullHandler)
     }
 
     override func didReceiveMemoryWarning() {
@@ -38,7 +56,7 @@ class ViewController: UIViewController, UITableViewDataSource {
         // Dispose of any resources that can be recreated.
     }
     
-    // Mark: - Table View Data Source
+    // MARK: - Table View Data Source
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.tableData.count
@@ -52,6 +70,9 @@ class ViewController: UIViewController, UITableViewDataSource {
         return cell
     }
 
+    func updateTweetStream( sender: AnyObject? ) {
+        twitterClient.getHomeTimeLine(tweetStreamCompletionBlock)
+    }
 
 }
 

@@ -53,9 +53,6 @@ class TableViewController: UITableViewController, UITableViewDataSource, UITable
         tableView.addSubview(pullHandler)
     }
     
-    override func viewWillAppear(animated: Bool) {
-        twitterClient.getHomeTimeLine(tweetStreamCompletionBlock);
-    }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -66,6 +63,10 @@ class TableViewController: UITableViewController, UITableViewDataSource, UITable
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.tableData.count
+    }
+    
+    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        return 98  // TODO: more appropriate
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {

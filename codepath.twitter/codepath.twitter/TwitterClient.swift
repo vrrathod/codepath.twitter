@@ -136,9 +136,17 @@ class TwitterClient {
                 completionHandler!(false, outputArray, error)
                 }
             } else {
-                outputArray = NSJSONSerialization.JSONObjectWithData(data, options: nil, error: nil) as NSArray
-                if (nil != completionHandler) {
-                    completionHandler!(true, outputArray, nil)
+                if let httpResponse = response as? NSHTTPURLResponse {
+                    if (httpResponse.statusCode >= 200 && httpResponse.statusCode < 300) {
+                        outputArray = NSJSONSerialization.JSONObjectWithData(data, options: nil, error: nil) as NSArray
+                        if (nil != completionHandler) {
+                            completionHandler!(true, outputArray, nil)
+                        }
+                    } else if (nil != completionHandler) {
+                        var localizedDescription:NSString = "Twitter returned \(httpResponse.statusCode)"
+                        var err = NSError(domain: "Twitter", code: 0, userInfo: [NSLocalizedDescriptionKey: localizedDescription])
+                        completionHandler!(false, outputArray, err);
+                    }
                 }
             }
         })

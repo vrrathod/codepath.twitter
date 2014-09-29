@@ -8,7 +8,7 @@
 
 import UIKit
 
-class TableViewController: UITableViewController, UITableViewDataSource {
+class TableViewController: UITableViewController, UITableViewDataSource, UITableViewDelegate {
     
     // Twitter client object
     var twitterClient = TwitterClient();
@@ -18,6 +18,7 @@ class TableViewController: UITableViewController, UITableViewDataSource {
     
     // Pull handler
     var pullHandler:UIRefreshControl = UIRefreshControl();
+    var isPulled = false;
     
     // MARK: - Overrides and Blocks
     
@@ -32,7 +33,10 @@ class TableViewController: UITableViewController, UITableViewDataSource {
             NSLog("Error! \(error?.localizedDescription)")
         }
         
-        self.pullHandler.endRefreshing();
+        if self.isPulled{
+            self.pullHandler.endRefreshing()
+            self.isPulled = false
+        }
     }
     
     override func viewDidLoad() {
@@ -48,7 +52,11 @@ class TableViewController: UITableViewController, UITableViewDataSource {
         pullHandler.addTarget(self, action: "updateTweetStream:", forControlEvents: UIControlEvents.ValueChanged)
         tableView.addSubview(pullHandler)
     }
-
+    
+    override func viewWillAppear(animated: Bool) {
+        twitterClient.getHomeTimeLine(tweetStreamCompletionBlock);
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -69,7 +77,20 @@ class TableViewController: UITableViewController, UITableViewDataSource {
     }
 
     func updateTweetStream( sender: AnyObject? ) {
+        self.isPulled = true;
         twitterClient.getHomeTimeLine(tweetStreamCompletionBlock)
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "showTweetDetails" {
+            let dest = segue.destinationViewController as TweetDetailsViewController
+            if let cell = sender as? TwitterTableViewCell {
+                dest.setTweetInfo(cell.tweetInfo)
+                if let img = cell.userProfileImage.image as UIImage? {
+                    dest.setUserProfilePic( img )
+                }
+            }
+        }
     }
 
 }

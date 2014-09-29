@@ -8,10 +8,10 @@
 
 import Foundation
 
-class Tweet {
+class Tweet : NSObject {
     //MARK: Properties
-    private var tweetData:NSDictionary = NSDictionary();
-    private var userData:NSDictionary = NSDictionary();
+    var tweetData:NSDictionary = NSDictionary();
+    var userData:NSDictionary = NSDictionary();
     
     //MARK: Methods
     func setTweetData( data:NSDictionary ) {
@@ -25,6 +25,16 @@ class Tweet {
         var out = dict[attr] as? String
         if( nil != out ) {
             return out!
+        } else {
+            return "" // TODO: check if to use "" or nil
+        }
+    }
+    
+    // Generic Getter for number
+    func numberStringForAttribute( attr:String, inUserData:Bool ) -> String {
+        let dict = (inUserData ? userData : tweetData );
+        if let out = dict[attr] as NSNumber? {
+            return "\(out)"
         } else {
             return "" // TODO: check if to use "" or nil
         }
@@ -45,9 +55,23 @@ class Tweet {
         return stringForAttribute("text", inUserData: false)
     }
     
+    func tweetTime() -> String {
+        return stringForAttribute("created_at", inUserData: false);
+    }
+    
     func userProfilePicURL() -> NSURL {
         var stringURL = stringForAttribute("profile_image_url", inUserData: true);
         return NSURL(string: stringURL);
+    }
+    
+    func tweetRT() -> String {
+        var rtCount = numberStringForAttribute("retweet_count", inUserData: false);
+        return "\(rtCount) RETWEETED"
+    }
+    
+    func favoriteCount() -> String {
+        var favCount = numberStringForAttribute("favorite_count", inUserData: false)
+        return "\(favCount) FAVORITED"
     }
     
 }

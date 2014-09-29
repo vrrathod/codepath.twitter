@@ -39,9 +39,21 @@ class TwitterTableViewCell: UITableViewCell {
         userName.text = tweetInfo.userName()
         userHandle.text = "@\(tweetInfo.userHandle())"
         tweet.text = tweetInfo.tweetText()
-        
+        setUserProfilePic(tweetInfo.userProfilePicURL())
     }
     
+    // MARK: - Profile Pic
+    func imageDownloadCompletion( location:NSURL!, response:NSURLResponse!, error:NSError!) -> Void {
+        if( nil == error ) {
+            self.userProfileImage.image = UIImage(data: NSData(contentsOfURL: location));
+            self.userProfileImage.setNeedsLayout();
+        } else {
+            NSLog("downloading image failed \(location)");
+        }
+    }
     
+    func setUserProfilePic( url:NSURL ) {
+        NSURLSession.sharedSession().downloadTaskWithURL(url, completionHandler: imageDownloadCompletion).resume()
+    }
 
 }

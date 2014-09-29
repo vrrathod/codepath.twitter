@@ -45,8 +45,9 @@ class Tweet {
         return stringForAttribute("text", inUserData: false)
     }
     
-    func userProfilePicUrlString() -> String {
-        return stringForAttribute("profile_image_url", inUserData: true)
+    func userProfilePicURL() -> NSURL {
+        var stringURL = stringForAttribute("profile_image_url", inUserData: true);
+        return NSURL(string: stringURL);
     }
     
 }

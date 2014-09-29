@@ -53,6 +53,9 @@ class TwitterTableViewCell: UITableViewCell {
     }
     
     func setUserProfilePic( url:NSURL ) {
+        //TODO: instead of blindly downloading images,
+        // we could create a local image store in core data and load only unavailable images
+        // ==> reduced traffic / data
         NSURLSession.sharedSession().downloadTaskWithURL(url, completionHandler: imageDownloadCompletion).resume()
     }
 

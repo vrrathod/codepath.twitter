@@ -50,8 +50,10 @@ class TwitterTableViewCell: UITableViewCell {
     // MARK: - Profile Pic
     func imageDownloadCompletion( location:NSURL!, response:NSURLResponse!, error:NSError!) -> Void {
         if( nil == error ) {
-            self.userProfileImage.image = UIImage(data: NSData(contentsOfURL: location));
-            self.userProfileImage.setNeedsLayout();
+            dispatch_async(dispatch_get_main_queue(), {
+                self.userProfileImage.image = UIImage(data: NSData(contentsOfURL: location));
+                self.userProfileImage.setNeedsLayout();
+            });
         } else {
             NSLog("downloading image failed \(location)");
         }

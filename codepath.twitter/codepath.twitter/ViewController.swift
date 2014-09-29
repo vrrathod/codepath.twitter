@@ -26,7 +26,7 @@ class TableViewController: UITableViewController, UITableViewDataSource {
         if success {
             NSLog("\(dataArray)")
             self.tableData = dataArray // TODO: append data?
-            self.tableView.reloadData();
+            dispatch_async(dispatch_get_main_queue(),  { self.tableView.reloadData(); });
             
         } else {
             NSLog("Error! \(error?.localizedDescription)")

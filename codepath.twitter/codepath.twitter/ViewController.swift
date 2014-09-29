@@ -8,9 +8,7 @@
 
 import UIKit
 
-class ViewController: UIViewController, UITableViewDataSource {
-
-    @IBOutlet weak var tweetStreamTableView: UITableView!
+class TableViewController: UITableViewController, UITableViewDataSource {
     
     // Twitter client object
     var twitterClient = TwitterClient();
@@ -28,7 +26,7 @@ class ViewController: UIViewController, UITableViewDataSource {
         if success {
             NSLog("\(dataArray)")
             self.tableData = dataArray // TODO: append data?
-            self.tweetStreamTableView.reloadData()
+            self.tableView.reloadData();
             
         } else {
             NSLog("Error! \(error?.localizedDescription)")
@@ -39,7 +37,7 @@ class ViewController: UIViewController, UITableViewDataSource {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        tweetStreamTableView.rowHeight = UITableViewAutomaticDimension;
+        tableView.rowHeight = UITableViewAutomaticDimension
         
         // Do any additional setup after loading the view, typically from a nib.
         twitterClient.getHomeTimeLine(tweetStreamCompletionBlock);
@@ -48,7 +46,7 @@ class ViewController: UIViewController, UITableViewDataSource {
         pullHandler.attributedTitle = NSAttributedString(string: "Pull Me!")
         pullHandler.tintColor = UIColor.redColor()
         pullHandler.addTarget(self, action: "updateTweetStream:", forControlEvents: UIControlEvents.ValueChanged)
-        tweetStreamTableView.addSubview(pullHandler)
+        tableView.addSubview(pullHandler)
     }
 
     override func didReceiveMemoryWarning() {
@@ -58,11 +56,11 @@ class ViewController: UIViewController, UITableViewDataSource {
     
     // MARK: - Table View Data Source
     
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.tableData.count
     }
     
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         var cell: TwitterTableViewCell = tableView.dequeueReusableCellWithIdentifier(TwitterConstant.twitterTableRowConst()) as TwitterTableViewCell
         
         cell.setTweetData(tableData.objectAtIndex(indexPath.row) as NSDictionary)

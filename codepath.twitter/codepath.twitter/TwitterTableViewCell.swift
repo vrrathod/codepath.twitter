@@ -37,8 +37,13 @@ class TwitterTableViewCell: UITableViewCell {
         tweetInfo.setTweetData(tweetData)
         
         userName.text = tweetInfo.userName()
+        userName.sizeToFit()
+        
         userHandle.text = "@\(tweetInfo.userHandle())"
+        userHandle.sizeToFit()
+        
         tweet.text = tweetInfo.tweetText()
+        
         setUserProfilePic(tweetInfo.userProfilePicURL())
     }
     

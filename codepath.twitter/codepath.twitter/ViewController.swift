@@ -79,7 +79,7 @@ class TableViewController: UITableViewController, UITableViewDataSource, UITable
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if segue.identifier == "showTweetDetails" {
+        if segue.identifier == TwitterConstant.tweetDetailsSegueName {
             let dest = segue.destinationViewController as TweetDetailsViewController
             if let cell = sender as? TwitterTableViewCell {
                 dest.setTweetInfo(cell.tweetInfo)
@@ -87,6 +87,8 @@ class TableViewController: UITableViewController, UITableViewDataSource, UITable
                     dest.setUserProfilePic( img )
                 }
             }
+        } else if segue.identifier == TwitterConstant.twitterNewTweetSegueName {
+            NSLog("Creating new tweet ...");
         }
     }
 

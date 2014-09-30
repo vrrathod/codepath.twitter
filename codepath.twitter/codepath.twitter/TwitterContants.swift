@@ -16,6 +16,18 @@ class TwitterConstant {
         }
     }
     
+    class var twitterNewTweetSegueName:String {
+        get {
+            return "newTweet"
+        }
+    }
+    
+    class var tweetDetailsSegueName:String {
+        get {
+            return "showTweetDetails"
+        }
+    }
+    
     class var home_timeLine:String {
         get{
             return "https://api.twitter.com/1.1/statuses/home_timeline.json"

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		370F036E19DA82DA007F6CE1 /* ComposeTweetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 370F036D19DA82DA007F6CE1 /* ComposeTweetViewController.swift */; };
 		3776B6B719D8B7750049CE32 /* TwitterTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3776B6B619D8B7750049CE32 /* TwitterTableViewCell.swift */; };
 		3776B6B919D8B8830049CE32 /* Tweet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3776B6B819D8B8830049CE32 /* Tweet.swift */; };
 		378E376219D93444006FD22E /* TweetDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 378E376119D93444006FD22E /* TweetDetailsViewController.swift */; };
@@ -33,6 +34,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		370F036D19DA82DA007F6CE1 /* ComposeTweetViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComposeTweetViewController.swift; sourceTree = "<group>"; };
 		3776B6B619D8B7750049CE32 /* TwitterTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TwitterTableViewCell.swift; sourceTree = "<group>"; };
 		3776B6B819D8B8830049CE32 /* Tweet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tweet.swift; sourceTree = "<group>"; };
 		378E376119D93444006FD22E /* TweetDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TweetDetailsViewController.swift; sourceTree = "<group>"; };
@@ -106,6 +108,7 @@
 				379FEDE119D888850034CD57 /* TwitterContants.swift */,
 				3776B6B619D8B7750049CE32 /* TwitterTableViewCell.swift */,
 				3776B6B819D8B8830049CE32 /* Tweet.swift */,
+				370F036D19DA82DA007F6CE1 /* ComposeTweetViewController.swift */,
 			);
 			path = codepath.twitter;
 			sourceTree = "<group>";
@@ -237,6 +240,7 @@
 			files = (
 				379FEDBE19D7C12D0034CD57 /* ViewController.swift in Sources */,
 				379FEDE219D888850034CD57 /* TwitterContants.swift in Sources */,
+				370F036E19DA82DA007F6CE1 /* ComposeTweetViewController.swift in Sources */,
 				379FEDE019D7CCBD0034CD57 /* TwitterClient.swift in Sources */,
 				3776B6B919D8B8830049CE32 /* Tweet.swift in Sources */,
 				379FEDBC19D7C12D0034CD57 /* AppDelegate.swift in Sources */,

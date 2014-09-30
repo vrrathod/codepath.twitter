@@ -9,12 +9,12 @@
         <scene sceneID="Ads-4Y-V8r">
             <objects>
                 <tableViewController title="Tweet'em" providesPresentationContextTransitionStyle="YES" id="vM5-XH-bh2" customClass="TableViewController" customModule="codepath_twitter" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="153" sectionHeaderHeight="22" sectionFooterHeight="22" id="qB5-0D-I2s">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="119" sectionHeaderHeight="22" sectionFooterHeight="22" id="qB5-0D-I2s">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="TwitterCell" rowHeight="153" id="L0K-7f-uNC" customClass="TwitterTableViewCell" customModule="codepath_twitter" customModuleProvider="target">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="TwitterCell" rowHeight="119" id="L0K-7f-uNC" customClass="TwitterTableViewCell" customModule="codepath_twitter" customModuleProvider="target">
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="L0K-7f-uNC" id="JvB-wr-A1N">
                                     <autoresizingMask key="autoresizingMask"/>
@@ -41,7 +41,7 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4gA-JB-jai">
-                                            <rect key="frame" x="68" y="30" width="514" height="104"/>
+                                            <rect key="frame" x="68" y="30" width="514" height="70"/>
                                             <string key="text">Label is a very long text.Label is a very long text.Label is a very long text.Label is a very long text.Label is a very long text.Label is a very long text.Label is a very long text.Label is a very long text.Label is a very long text.Label is a very long text.Label is a very long </string>
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -77,7 +77,11 @@
                     </tableView>
                     <navigationItem key="navigationItem" title="Home" id="q3H-Lt-m94">
                         <barButtonItem key="leftBarButtonItem" title="Sign Out" id="0r1-2H-nSg"/>
-                        <barButtonItem key="rightBarButtonItem" systemItem="compose" id="hUb-Tr-2zm"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="compose" id="hUb-Tr-2zm">
+                            <connections>
+                                <segue destination="Ffl-bZ-Dmg" kind="show" identifier="newTweet" id="mdY-tF-teR"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9DB-gX-1yH" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -205,7 +209,25 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="z3X-gP-Bmd" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2424" y="-421"/>
+            <point key="canvasLocation" x="2367" y="-624"/>
+        </scene>
+        <!--Compose Tweet View Controller-->
+        <scene sceneID="8oC-l6-SrN">
+            <objects>
+                <viewController id="Ffl-bZ-Dmg" customClass="ComposeTweetViewController" customModule="codepath_twitter" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="wMA-pY-z7F"/>
+                        <viewControllerLayoutGuide type="bottom" id="hvi-IP-nTi"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="PM3-lO-SeO">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="7Et-2W-N2a" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2367" y="34"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="0Kg-hO-JhE">

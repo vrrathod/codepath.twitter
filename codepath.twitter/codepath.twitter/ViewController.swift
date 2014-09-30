@@ -10,6 +10,8 @@ import UIKit
 
 class TableViewController: UITableViewController, UITableViewDataSource, UITableViewDelegate {
     
+    // User info
+    var userImage:UIImage?
     
     // Table data
     var tableData = NSArray()
@@ -17,7 +19,7 @@ class TableViewController: UITableViewController, UITableViewDataSource, UITable
     // Pull handler
     var pullHandler:UIRefreshControl = UIRefreshControl();
     var isPulled = false;
-    
+        
     // MARK: - Overrides and Blocks
     
     // Block to handle completion of the tweets query
@@ -26,6 +28,9 @@ class TableViewController: UITableViewController, UITableViewDataSource, UITable
             NSLog("\(dataArray)")
             self.tableData = dataArray // TODO: append data?
             self.tableView.reloadData()
+            // Once we are done here, we know things are setup appropriately
+            // let get current user's image if its not there
+            self.downloadCurrentUserImage()
         } else {
             NSLog("Error! \(error?.localizedDescription)")
         }
@@ -46,6 +51,26 @@ class TableViewController: UITableViewController, UITableViewDataSource, UITable
         pullHandler.tintColor = UIColor.redColor()
         pullHandler.addTarget(self, action: "updateTweetStream:", forControlEvents: UIControlEvents.ValueChanged)
         tableView.addSubview(pullHandler)
+        
+    }
+    
+    func downloadCurrentUserImage() {
+        
+        if nil != userImage {
+            // We've got the image, bail out 
+            return
+        }
+        
+        // let get current user's image
+        let url = NSURL( string: TwitterClient.sharedClient.accountImageURL )
+        NSURLSession.sharedSession().downloadTaskWithURL(url, completionHandler: { (localURL, response, error) -> Void in
+            if nil != error {
+                NSLog("Failed to get current user's image: \(error.localizedDescription)");
+            } else {
+                // We've got the url
+                self.userImage = UIImage(data: NSData(contentsOfURL: localURL))
+            }
+        }).resume()
     }
     
     
@@ -88,7 +113,12 @@ class TableViewController: UITableViewController, UITableViewDataSource, UITable
                 }
             }
         } else if segue.identifier == TwitterConstant.twitterNewTweetSegueName {
-            NSLog("Creating new tweet ...");
+            let dest = segue.destinationViewController as ComposeTweetViewController
+            if nil != userImage {
+                dest.setUserImage(userImage)
+            } else {
+                downloadCurrentUserImage()
+            }
         }
     }
 

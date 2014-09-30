@@ -19,6 +19,8 @@ class TwitterClient {
     let accountType:ACAccountType?
     var account:ACAccount?
     
+    var accountImageURL:String = ""
+    
     var urlSession = NSURLSession(configuration: NSURLSessionConfiguration.defaultSessionConfiguration());
     
     // --- --- --- --- --- --- ---
@@ -42,6 +44,11 @@ class TwitterClient {
             requestAccountID( true )
         } else {
             printAccount()
+        }
+        
+        if account != nil {
+            // fetch the user image
+            requestAccountImageURL()
         }
     }
     
@@ -71,6 +78,40 @@ class TwitterClient {
                 }
             }
         })
+    }
+    
+    // request current user's image
+    func requestAccountImageURL() {
+        if nil == account {
+            NSLog("Account is not setup correctly")
+            return
+        }
+
+        let stringURL = "\(TwitterConstant.userInformation)\(userName())";
+        let url = NSURL( string: stringURL )
+        
+        let authRequest = SLRequest(forServiceType: SLServiceTypeTwitter, requestMethod: SLRequestMethod.GET, URL: url, parameters: nil)
+        authRequest.account = account
+        
+        let request = authRequest.preparedURLRequest()
+
+        let task = self.urlSession.dataTaskWithRequest(request, completionHandler: { (data, response, error) -> Void in
+            if error != nil {
+                NSLog(" error fetching data : \(error.localizedDescription) ")
+            } else {
+                if let httpResponse = response as? NSHTTPURLResponse {
+                    if (httpResponse.statusCode >= 200 && httpResponse.statusCode < 300) {
+                        var userInfo =
+                        NSJSONSerialization.JSONObjectWithData(data, options: nil, error: nil) as NSDictionary;
+                        self.accountImageURL = userInfo["profile_image_url"] as String;
+                    } else {
+                        NSLog("HTTP Response \(httpResponse.statusCode)");
+                    }
+                }
+            }
+        })
+        
+        task.resume()
     }
     
     //-------------------------------------------------------------------------------------
@@ -123,6 +164,25 @@ class TwitterClient {
         NSLog("Account = \(account)")
     }
     
+    func userName() -> String {
+        if self.account != nil {
+            return self.account!.username
+        } else {
+            return "??"
+        }
+    }
+    
+    func userHandle() -> String {
+        if self.account != nil {
+            return self.account!.accountDescription
+        } else {
+            return "@??"
+        }
+    }
+    
+    func userImageURL() -> String {
+        return accountImageURL
+    }
     
     // --- --- --- --- --- --- ---
     // MARK: - Twitter Interaction -
@@ -206,6 +266,38 @@ class TwitterClient {
                         NSLog("favorite succeeded")
                     } else {
                         NSLog( "Fav: Twitter returned \(httpResponse.statusCode)" )
+                    }
+                }
+            }
+        })
+        
+        task.resume()
+    }
+    
+    func doTweet( message:String ) {
+        var localMessage = message.stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.URLHostAllowedCharacterSet()) as String?
+        if (localMessage == nil) || ( countElements(localMessage!) == 0 ) {
+            //status message is empty
+            return
+        }
+        
+        var stringURL = "\(TwitterConstant.updateStatus)\(localMessage!)"
+        let url = NSURL( string: stringURL)
+        
+        let authRequest = SLRequest(forServiceType: SLServiceTypeTwitter, requestMethod: SLRequestMethod.POST, URL: url, parameters: nil)
+        authRequest.account = account
+        
+        let request = authRequest.preparedURLRequest()
+        
+        let task = self.urlSession.dataTaskWithRequest(request, completionHandler: { (data, response, error) -> Void in
+            if error != nil {
+                NSLog("Error creating status!. \(error.localizedDescription)")
+            } else {
+                if let httpResponse = response as? NSHTTPURLResponse {
+                    if (httpResponse.statusCode >= 200 && httpResponse.statusCode < 300) {
+                        NSLog("status update succeeded")
+                    } else {
+                        NSLog( "Status update: Twitter returned \(httpResponse.statusCode)" )
                     }
                 }
             }

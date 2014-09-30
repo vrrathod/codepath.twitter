@@ -52,4 +52,15 @@ class TwitterConstant {
         }
     }
     
+    class var updateStatus:String {
+        get {
+            return "https://api.twitter.com/1.1/statuses/update.json?status=";
+        }
+    }
+    
+    class var userInformation:String {
+        get {
+            return "https://api.twitter.com/1.1/users/show.json?screen_name=";
+        }
+    }
 }

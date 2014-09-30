@@ -40,6 +40,7 @@ class ComposeTweetViewController: UIViewController, UITextViewDelegate {
         if nil != userImage {
             profileImage.image = userImage!;
         }
+        countDown.text = "\(countElements(userStatusUpdate.text))/140"
     }
 
     override func didReceiveMemoryWarning() {
@@ -51,19 +52,21 @@ class ComposeTweetViewController: UIViewController, UITextViewDelegate {
     func doTweet() {
         let status = userStatusUpdate.text as String
         TwitterClient.sharedClient.doTweet( status )
-        self.navigationController?.dismissViewControllerAnimated(true, completion: nil);
+        self.navigationController?.popViewControllerAnimated(true);
     }
     
     //MARK: - TextViewDelegate
     func textViewDidChange(textView: UITextView) {
         if( textView == userStatusUpdate ) {
             let len = countElements( textView.text )
-            if( len >= 140 ){
+            if( len > 140 ){
                 flashCountDown()
                 textView.text = currentMessage
+                countDown.textColor = UIColor.redColor()
             } else {
                 currentMessage = textView.text
                 countDown.text = "\(len)/140"
+                countDown.textColor = UIColor.greenColor()
             }
         }
     }

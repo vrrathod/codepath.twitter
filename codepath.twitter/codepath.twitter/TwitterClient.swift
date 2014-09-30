@@ -24,6 +24,14 @@ class TwitterClient {
     // --- --- --- --- --- --- ---
     // MARK: - SETUP
     // --- --- --- --- --- --- ---
+    
+    class var sharedClient: TwitterClient {
+    struct Static {
+        static let instance = TwitterClient();
+        }
+        return Static.instance;
+    }
+    
     init(){
         // Read account settings from the iOS system
         accountStore = ACAccountStore()
@@ -122,18 +130,18 @@ class TwitterClient {
     func getHomeTimeLine( completionHandler:((Bool, NSArray!, NSError!) -> Void)? ) -> NSArray {
         var outputArray = NSArray();
         
-        let url = NSURL( string: TwitterConstant.home_timeLine() )
-
+        let url = NSURL( string: TwitterConstant.home_timeLine )
+        
         let authRequest = SLRequest(forServiceType: SLServiceTypeTwitter, requestMethod: SLRequestMethod.GET, URL: url, parameters: nil)
         authRequest.account = account
         
         let request = authRequest.preparedURLRequest()
-
+        
         let task = self.urlSession.dataTaskWithRequest(request, completionHandler: { (data, response, error) -> Void in
             if error != nil {
                 NSLog(" error fetching data : \(error.localizedDescription) ")
                 if (nil != completionHandler) {
-                completionHandler!(false, outputArray, error)
+                    completionHandler!(false, outputArray, error)
                 }
             } else {
                 if let httpResponse = response as? NSHTTPURLResponse {
@@ -154,6 +162,56 @@ class TwitterClient {
         task.resume()
         
         return outputArray;
+    }
+    
+    func retweet( tweetId:String ) {
+        var stringURL = "\(TwitterConstant.retweetURL)\(tweetId).json"
+        let url = NSURL( string: stringURL )
+        let authRequest = SLRequest(forServiceType: SLServiceTypeTwitter, requestMethod: SLRequestMethod.POST, URL: url, parameters: nil)
+        authRequest.account = account
+        
+        let request = authRequest.preparedURLRequest()
+        
+        let task = self.urlSession.dataTaskWithRequest(request, completionHandler: { (data, response, error) -> Void in
+            if error != nil {
+                NSLog("Error re-tweeting. \(error.localizedDescription)")
+            } else {
+                if let httpResponse = response as? NSHTTPURLResponse {
+                    if (httpResponse.statusCode >= 200 && httpResponse.statusCode < 300) {
+                        NSLog("retweet succeeded")
+                    } else {
+                        NSLog( "Twitter returned \(httpResponse.statusCode)" )
+                    }
+                }
+            }
+        })
+        
+        task.resume()
+    }
+    
+    func favorite( tweetId:String ) {
+        var stringURL = "\(TwitterConstant.favoriteURL)\(tweetId)"
+        let url = NSURL( string: stringURL )
+        let authRequest = SLRequest(forServiceType: SLServiceTypeTwitter, requestMethod: SLRequestMethod.POST, URL: url, parameters: nil)
+        authRequest.account = account
+        
+        let request = authRequest.preparedURLRequest()
+        
+        let task = self.urlSession.dataTaskWithRequest(request, completionHandler: { (data, response, error) -> Void in
+            if error != nil {
+                NSLog("Error favoriting!. \(error.localizedDescription)")
+            } else {
+                if let httpResponse = response as? NSHTTPURLResponse {
+                    if (httpResponse.statusCode >= 200 && httpResponse.statusCode < 300) {
+                        NSLog("favorite succeeded")
+                    } else {
+                        NSLog( "Fav: Twitter returned \(httpResponse.statusCode)" )
+                    }
+                }
+            }
+        })
+        
+        task.resume()
     }
     
 }

@@ -48,7 +48,8 @@ class TweetDetailsViewController: UIViewController {
     
     func setUserProfilePic( pic:UIImage ){
         dispatch_async(dispatch_get_main_queue(), {
-            self.profileImage.image = pic;
+            self.profileImage.image = pic
+            self.profileImage.sizeToFit()
         });
     }
     
@@ -62,6 +63,16 @@ class TweetDetailsViewController: UIViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    
+    // MARK: Interactions
+    @IBAction func doRetweet(sender: UIButton) {
+        TwitterClient.sharedClient.retweet(tweetInfo.tweetID());
+    }
+    
+    @IBAction func doFav(sender: AnyObject) {
+        TwitterClient.sharedClient.favorite(tweetInfo.tweetID())
     }
     
 

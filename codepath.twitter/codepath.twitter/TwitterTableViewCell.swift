@@ -43,6 +43,7 @@ class TwitterTableViewCell: UITableViewCell {
         userHandle.sizeToFit()
         
         tweet.text = tweetInfo.tweetText()
+        tweet.sizeToFit()
         
         setUserProfilePic(tweetInfo.userProfilePicURL())
     }

@@ -9,12 +9,12 @@
         <scene sceneID="Ads-4Y-V8r">
             <objects>
                 <tableViewController title="Tweet'em" providesPresentationContextTransitionStyle="YES" id="vM5-XH-bh2" customClass="TableViewController" customModule="codepath_twitter" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="98" sectionHeaderHeight="22" sectionFooterHeight="22" id="qB5-0D-I2s">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="153" sectionHeaderHeight="22" sectionFooterHeight="22" id="qB5-0D-I2s">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="TwitterCell" rowHeight="98" id="L0K-7f-uNC" customClass="TwitterTableViewCell" customModule="codepath_twitter" customModuleProvider="target">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="TwitterCell" rowHeight="153" id="L0K-7f-uNC" customClass="TwitterTableViewCell" customModule="codepath_twitter" customModuleProvider="target">
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="L0K-7f-uNC" id="JvB-wr-A1N">
                                     <autoresizingMask key="autoresizingMask"/>
@@ -40,8 +40,9 @@
                                             <color key="textColor" red="0.43529411759999997" green="0.4431372549" blue="0.47450980390000003" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4gA-JB-jai">
-                                            <rect key="frame" x="68" y="30" width="514" height="49"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4gA-JB-jai">
+                                            <rect key="frame" x="68" y="30" width="514" height="104"/>
+                                            <string key="text">Label is a very long text.Label is a very long text.Label is a very long text.Label is a very long text.Label is a very long text.Label is a very long text.Label is a very long text.Label is a very long text.Label is a very long text.Label is a very long text.Label is a very long </string>
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <nil key="highlightedColor"/>
@@ -50,12 +51,12 @@
                                     <constraints>
                                         <constraint firstItem="dho-Jh-5Kz" firstAttribute="leading" secondItem="JvB-wr-A1N" secondAttribute="leadingMargin" constant="5" id="1tK-DP-Szx"/>
                                         <constraint firstItem="Lpy-gn-rFG" firstAttribute="leading" secondItem="dho-Jh-5Kz" secondAttribute="trailing" constant="5" id="63W-Md-ZL3"/>
-                                        <constraint firstAttribute="trailingMargin" secondItem="4gA-JB-jai" secondAttribute="trailing" constant="10" id="CS8-Sv-84F"/>
                                         <constraint firstItem="4gA-JB-jai" firstAttribute="top" secondItem="fa5-g0-NRd" secondAttribute="bottom" constant="5" id="CyV-Ui-5dr"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="4gA-JB-jai" secondAttribute="trailing" constant="10" id="Kvs-TL-OMg"/>
                                         <constraint firstItem="dho-Jh-5Kz" firstAttribute="top" secondItem="JvB-wr-A1N" secondAttribute="topMargin" constant="5" id="PAe-gx-Hj1"/>
-                                        <constraint firstAttribute="bottomMargin" secondItem="4gA-JB-jai" secondAttribute="bottom" constant="10" id="aAc-6U-b0u"/>
                                         <constraint firstItem="Lpy-gn-rFG" firstAttribute="top" secondItem="JvB-wr-A1N" secondAttribute="topMargin" constant="5" id="hCR-ko-QCi"/>
                                         <constraint firstItem="fa5-g0-NRd" firstAttribute="leading" secondItem="Lpy-gn-rFG" secondAttribute="trailing" constant="5" id="jaP-bL-L1o"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="4gA-JB-jai" secondAttribute="bottom" constant="10" id="uAG-pY-PZN"/>
                                         <constraint firstItem="fa5-g0-NRd" firstAttribute="top" secondItem="JvB-wr-A1N" secondAttribute="topMargin" constant="5" id="x6R-Jd-gjn"/>
                                         <constraint firstItem="4gA-JB-jai" firstAttribute="leading" secondItem="dho-Jh-5Kz" secondAttribute="trailing" constant="5" id="yZT-Cu-Chd"/>
                                     </constraints>
@@ -81,7 +82,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9DB-gX-1yH" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1539" y="-421"/>
+            <point key="canvasLocation" x="1539" y="-422"/>
         </scene>
         <!--Tweet Details View Controller-->
         <scene sceneID="TMa-a9-ouI">
@@ -120,21 +121,9 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2E8-ca-cpj">
-                                <rect key="frame" x="0.0" y="0.0" width="30" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2E8-ca-cpj">
+                                <rect key="frame" x="16" y="520" width="30" height="30"/>
                                 <state key="normal" title="Rep">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TXS-DM-Mg9">
-                                <rect key="frame" x="0.0" y="0.0" width="30" height="30"/>
-                                <state key="normal" title="RT">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pss-dg-DvU">
-                                <rect key="frame" x="0.0" y="0.0" width="30" height="30"/>
-                                <state key="normal" title="Fav">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                             </button>
@@ -156,6 +145,24 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Gkg-o3-0w0">
+                                <rect key="frame" x="76" y="520" width="30" height="30"/>
+                                <state key="normal" title="RT">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="doRetweet:" destination="Efl-bP-I0X" eventType="touchUpInside" id="GqG-Mk-kEY"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Dx2-uZ-GVQ">
+                                <rect key="frame" x="148" y="520" width="30" height="30"/>
+                                <state key="normal" title="FV">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="doFav:" destination="Efl-bP-I0X" eventType="touchUpInside" id="83B-5b-CSU"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -169,15 +176,21 @@
                             <constraint firstItem="eJi-uT-oEt" firstAttribute="top" secondItem="BkZ-x1-lVk" secondAttribute="bottom" constant="10" id="NSQ-qF-7WY"/>
                             <constraint firstItem="BkZ-x1-lVk" firstAttribute="top" secondItem="Ud7-LZ-m6R" secondAttribute="bottom" constant="10" id="S58-2y-CMK"/>
                             <constraint firstItem="vvS-nG-RJj" firstAttribute="leading" secondItem="qEW-sI-YRX" secondAttribute="trailing" constant="10" id="SNM-gV-qZz"/>
+                            <constraint firstItem="f9w-TL-a6h" firstAttribute="top" secondItem="Dx2-uZ-GVQ" secondAttribute="bottom" constant="50" id="UOn-jR-RNd"/>
                             <constraint firstAttribute="trailingMargin" secondItem="vvS-nG-RJj" secondAttribute="trailing" constant="10" id="UsI-OP-GFM"/>
+                            <constraint firstItem="f9w-TL-a6h" firstAttribute="top" secondItem="Gkg-o3-0w0" secondAttribute="bottom" constant="50" id="WiY-hE-Bb7"/>
                             <constraint firstItem="W5S-oW-NBj" firstAttribute="leading" secondItem="eJi-uT-oEt" secondAttribute="trailing" constant="10" id="Xzh-VF-0KU"/>
                             <constraint firstItem="Ud7-LZ-m6R" firstAttribute="leading" secondItem="76F-Mv-apX" secondAttribute="leadingMargin" constant="10" id="YZP-1S-Wor"/>
                             <constraint firstItem="gMy-XH-86T" firstAttribute="top" secondItem="6tR-v3-IjX" secondAttribute="bottom" constant="5" id="Z6m-ke-ATY"/>
+                            <constraint firstItem="f9w-TL-a6h" firstAttribute="top" secondItem="2E8-ca-cpj" secondAttribute="bottom" constant="50" id="bT8-y2-eQF"/>
                             <constraint firstItem="vvS-nG-RJj" firstAttribute="top" secondItem="gMy-XH-86T" secondAttribute="bottom" constant="10" id="cmU-xT-fut"/>
                             <constraint firstItem="eJi-uT-oEt" firstAttribute="leading" secondItem="76F-Mv-apX" secondAttribute="leadingMargin" constant="10" id="ihG-wE-oPj"/>
                             <constraint firstAttribute="trailingMargin" secondItem="BkZ-x1-lVk" secondAttribute="trailing" constant="10" id="jAz-Jl-1ZW"/>
                             <constraint firstAttribute="trailingMargin" secondItem="gMy-XH-86T" secondAttribute="trailing" constant="10" id="mNL-4s-2Gh"/>
+                            <constraint firstItem="2E8-ca-cpj" firstAttribute="leading" secondItem="76F-Mv-apX" secondAttribute="leadingMargin" id="tdF-JV-3Pf"/>
+                            <constraint firstItem="Dx2-uZ-GVQ" firstAttribute="leading" secondItem="Gkg-o3-0w0" secondAttribute="trailing" constant="30" id="utx-rL-56Y"/>
                             <constraint firstAttribute="trailingMargin" secondItem="Ud7-LZ-m6R" secondAttribute="trailing" constant="10" id="wej-OS-aPh"/>
+                            <constraint firstItem="Gkg-o3-0w0" firstAttribute="leading" secondItem="2E8-ca-cpj" secondAttribute="trailing" constant="30" id="zL3-se-SJM"/>
                         </constraints>
                     </view>
                     <connections>

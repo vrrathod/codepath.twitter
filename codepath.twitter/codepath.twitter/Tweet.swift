@@ -40,8 +40,6 @@ class Tweet : NSObject {
         }
     }
     
-    // Generic Getter for number // TODO: do we need it really ?
-    
     // Actual attributes
     func userName() -> String {
         return stringForAttribute("name", inUserData: true)
@@ -74,4 +72,8 @@ class Tweet : NSObject {
         return "\(favCount) FAVORITED"
     }
     
+    func tweetID() -> String {
+        return numberStringForAttribute("id", inUserData: false)
+    }
+        
 }

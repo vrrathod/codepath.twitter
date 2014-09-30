@@ -10,8 +10,6 @@ import UIKit
 
 class TableViewController: UITableViewController, UITableViewDataSource, UITableViewDelegate {
     
-    // Twitter client object
-    var twitterClient = TwitterClient();
     
     // Table data
     var tableData = NSArray()
@@ -27,8 +25,7 @@ class TableViewController: UITableViewController, UITableViewDataSource, UITable
         if success {
             NSLog("\(dataArray)")
             self.tableData = dataArray // TODO: append data?
-            dispatch_async(dispatch_get_main_queue(),  { self.tableView.reloadData(); });
-            
+            self.tableView.reloadData()
         } else {
             NSLog("Error! \(error?.localizedDescription)")
         }
@@ -41,10 +38,8 @@ class TableViewController: UITableViewController, UITableViewDataSource, UITable
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        tableView.rowHeight = UITableViewAutomaticDimension
-        
         // Do any additional setup after loading the view, typically from a nib.
-        twitterClient.getHomeTimeLine(tweetStreamCompletionBlock);
+        TwitterClient.sharedClient.getHomeTimeLine(tweetStreamCompletionBlock);
         
         // setup pull handler
         pullHandler.attributedTitle = NSAttributedString(string: "Pull Me!")
@@ -66,20 +61,21 @@ class TableViewController: UITableViewController, UITableViewDataSource, UITable
     }
     
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        return 98  // TODO: more appropriate
+        return UITableViewAutomaticDimension
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        var cell: TwitterTableViewCell = tableView.dequeueReusableCellWithIdentifier(TwitterConstant.twitterTableRowConst()) as TwitterTableViewCell
+        var cell: TwitterTableViewCell = tableView.dequeueReusableCellWithIdentifier(TwitterConstant.twitterTableRowConst) as TwitterTableViewCell
         
         cell.setTweetData(tableData.objectAtIndex(indexPath.row) as NSDictionary)
+        cell.sizeToFit()
         
         return cell
     }
 
     func updateTweetStream( sender: AnyObject? ) {
         self.isPulled = true;
-        twitterClient.getHomeTimeLine(tweetStreamCompletionBlock)
+        TwitterClient.sharedClient.getHomeTimeLine(tweetStreamCompletionBlock)
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
